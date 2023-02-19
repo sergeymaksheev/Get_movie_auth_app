@@ -5,16 +5,20 @@ services:
   postgres:
     restart: always
     image: postgres:latest
+    
+    expose:
+    - "5433"
     ports:
-      - "5432:5432"
+    - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data/
     environment:
       # The environment variable credentials that is needed 
       # in django settings for Postgres to work.
-      POSTGRES_DB: trading_app
-      POSTGRES_USER: trading_admin
-      POSTGRES_PASSWORD: 03270327
+      - DB_NAME
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST
 
 volumes:
   pgdata:
